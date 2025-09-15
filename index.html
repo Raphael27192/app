@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyectos Universitarios</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <div class="logo">
+                <span>PU</span>
+            </div>
+            <h1>Proyecto de Universidad en la Web</h1>
+        </div>
+        <p>Plataforma para compartir proyectos académicos multimedia</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#proyectos">Proyectos</a></li>
+            <li><a href="#subir">Subir</a></li>
+            <li><a href="#about">Acerca de</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="inicio" class="hero">
+            <div class="hero-content">
+                <h2>Bienvenido a la Plataforma de Proyectos Universitarios</h2>
+                <p>Comparte y descubre proyectos académicos innovadores creados por estudiantes</p>
+                <button class="cta-button" onclick="scrollToSection('subir')">Subir tu proyecto</button>
+            </div>
+        </section>
+
+        <section id="proyectos" class="projects-section">
+            <h2>Proyectos Destacados</h2>
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="python">Python</button>
+                <button class="filter-btn" data-filter="video">Video</button>
+                <button class="filter-btn" data-filter="musica">Música</button>
+                <button class="filter-btn" data-filter="juego">Juegos</button>
+            </div>
+            <div class="projects-grid" id="projects-grid">
+                <div class="loading">Cargando proyectos...</div>
+            </div>
+        </section>
+
+        <section id="subir" class="upload-section">
+            <h2>Subir un Proyecto</h2>
+            <div class="upload-container">
+                <form id="upload-form" class="upload-form" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="project-title">Título del Proyecto</label>
+                        <input type="text" id="project-title" name="title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="project-description">Descripción</label>
+                        <textarea id="project-description" name="description" rows="4" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="project-type">Tipo de Proyecto</label>
+                        <select id="project-type" name="type" required>
+                            <option value="">Selecciona un tipo</option>
+                            <option value="python">Python</option>
+                            <option value="video">Video</option>
+                            <option value="musica">Música</option>
+                            <option value="juego">Juego</option>
+                            <option value="otro">Otro</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="project-file">Archivo del Proyecto</label>
+                        <input type="file" id="project-file" name="projectFile" required>
+                        <div class="file-info" id="file-info"></div>
+                    </div>
+                    <button type="submit" class="submit-btn">Subir Proyecto</button>
+                    <div id="upload-status"></div>
+                </form>
+                <div class="upload-info">
+                    <h3>¿Qué puedes subir?</h3>
+                    <ul>
+                        <li>Archivos de Python (.py)</li>
+                        <li>Juegos (ejecutables o enlaces)</li>
+                        <li>Videos (MP4, AVI, etc.)</li>
+                        <li>Música (MP3, WAV, etc.)</li>
+                        <li>Otros proyectos multimedia</li>
+                    </ul>
+                    <p>Los archivos deben ser de uso académico y respetar los derechos de autor.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about-section">
+            <h2>Acerca de este Proyecto</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Esta plataforma fue desarrollada como proyecto universitario para facilitar el intercambio de trabajos académicos entre estudiantes.</p>
+                    <p>Nuestro objetivo es crear un espacio donde los estudiantes puedan compartir sus creaciones y recibir feedback de la comunidad universitaria.</p>
+                    <p>¡Únete a nuestra comunidad y comparte tus proyectos!</p>
+                </div>
+                <div class="about-image">
+                    <div class="placeholder-image">Imagen Universitaria</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Proyecto Universitario</h3>
+                <p>Plataforma para compartir proyectos académicos</p>
+            </div>
+            <div class="footer-section">
+                <h3>Enlaces Rápidos</h3>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#proyectos">Proyectos</a></li>
+                    <li><a href="#subir">Subir</a></li>
+                    <li><a href="#about">Acerca de</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <p>Email: info@proyectouniversidad.edu</p>
+                <p>Teléfono: (123) 456-7890</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Proyecto de Universidad. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Modal para detalles del proyecto -->
+    <div id="project-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="modal-title"></h2>
+            <p class="modal-type" id="modal-type"></p>
+            <p id="modal-description"></p>
+            <div class="modal-actions">
+                <button id="download-btn" class="download-btn">Descargar Proyecto</button>
+                <button id="delete-btn" class="delete-btn">Eliminar Proyecto</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
